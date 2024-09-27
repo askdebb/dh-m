@@ -1,31 +1,31 @@
-name: dataHaul-m
+name: EAS Build
 
 on:
+  workflow_dispatch:
   push:
     branches:
       - main
 
 jobs:
   build:
+    name: Install and build
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
+      - uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
+      - uses: actions/setup-node@v4
         with:
-          node-version: '16'
+          node-version: '18.x'  # Use Node.js 18.x
+          cache: npm             # Cache npm dependencies
 
-      - name: Install EAS CLI
-        run: npm install -g eas-cli
+      - name: Setup Expo and EAS
+        uses: expo/expo-github-action@v8
+        with:
+          eas-version: latest       # Ensure the latest EAS CLI version is used
+          token: ${{ secrets.EXPO_TOKEN }}  # Use your Expo token secret
 
-      - name: Build Android
-        env:
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-        run: eas build -p android --non-interactive
+      - name: Install dependencies
+        run: npm ci                # Install dependencies using npm ci for clean install
 
-      - name: Build iOS
-        env:
-          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
-        run: eas build -p ios --non-interactive
+      - name: Build on EAS
+        run: eas build --platform all --non-interactive --no-wait  # Build for all platforms
