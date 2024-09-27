@@ -20,11 +20,12 @@ jobs:
       - name: Install EAS CLI
         run: npm install -g eas-cli
 
-      - name: Authenticate EAS
-        run: echo "${{ secrets.EAS_TOKEN }}" | eas secret:setup
-
       - name: Build Android
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
         run: eas build -p android --non-interactive
 
       - name: Build iOS
+        env:
+          EAS_TOKEN: ${{ secrets.EAS_TOKEN }}
         run: eas build -p ios --non-interactive
