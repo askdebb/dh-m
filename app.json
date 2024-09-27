@@ -1,0 +1,35 @@
+{
+  "expo": {
+    "name": "dataHaul-m",
+    "slug": "datahaul-mobile-ozsq1a6nbk1xeng7qsc3l",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/icon.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#ffffff"
+    },
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.jyanokye1.dataHaulm"
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/adaptive-icon.png",
+        "backgroundColor": "#ffffff"
+      },
+      "package": "com.jyanokye1.dataHaulm"
+    },
+    "web": {
+      "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "d5afe9de-0fb5-4a08-be16-239b99664511"
+      }
+    },
+    "owner": "datahaul-team"
+  }
+}
